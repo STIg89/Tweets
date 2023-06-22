@@ -1,7 +1,7 @@
+import CardList from '../components/Tweets/CardsList';
+
 const Tweets = () => {
-  return (
-    <div className="flex justify-center items-center h-screen">TWEETS</div>
-  );
+  return <CardList />;
 };
 
 export default Tweets;
