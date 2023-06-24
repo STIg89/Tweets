@@ -3,13 +3,13 @@ import Logo from './Logo';
 import Navigation from './Navigation';
 import Filter from './Filter';
 
-const MainLayout = () => {
+const MainLayout = ({ setSelectedFilter }) => {
   return (
     <div>
       <header className="flex justify-between items-center">
         <Logo />
         <Navigation />
-        <Filter />
+        <Filter setSelectedFilter={setSelectedFilter} />
       </header>
       <main>
         <Outlet />

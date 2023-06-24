@@ -1,28 +1,34 @@
 import { useEffect, useState } from 'react';
 import Card from './Card';
-import getAllUsers from '../../services/fetchAPI';
+import { getAll, getFollowing } from '../../utils/filterOptions';
 
-const CardList = () => {
+const CardList = ({ selectedFilter }) => {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [currentPage, setCurrentPage] = useState(null);
   const [followingIdList, setFollowingIdList] = useState(
     () => JSON.parse(localStorage.getItem('followingIdList')) ?? []
   );
-  console.log('followingIdList:', followingIdList);
 
   useEffect(() => {
     localStorage.setItem('followingIdList', JSON.stringify(followingIdList));
   }, [followingIdList]);
 
   useEffect(() => {
-    const getAll = async () => {
-      const fetchedUsers = await getAllUsers(page);
-      setUsers(prev => [...prev, ...fetchedUsers]);
-      setCurrentPage(page);
-    };
-    getAll();
-  }, [page]);
+    setPage(1);
+    setUsers([]);
+  }, [selectedFilter]);
+
+  useEffect(() => {
+    if (selectedFilter === 'all') {
+      const data = { page, setCurrentPage, setUsers };
+      getAll(data);
+    }
+    if (selectedFilter === 'followings') {
+      const data = { page, setCurrentPage, setUsers, followingIdList };
+      getFollowing(data);
+    }
+  }, [page, selectedFilter]);
 
   return (
     <div>
