@@ -1,46 +1,65 @@
 import { useEffect, useState } from 'react';
+import { getInitialFollowIdList } from '../../utils/initialUsersIds';
 import Card from './Card';
-import { getAll, getFollowing } from '../../utils/filterOptions';
+import { getAll, getFiltered } from '../../utils/filterOptions';
 
 const CardList = ({ selectedFilter }) => {
+  let [page, setPage] = useState(1);
   const [users, setUsers] = useState([]);
-  const [page, setPage] = useState(1);
-  const [currentPage, setCurrentPage] = useState(null);
   const [followingIdList, setFollowingIdList] = useState(
     () => JSON.parse(localStorage.getItem('followingIdList')) ?? []
   );
+  const [followIdList, setFollowIdList] = useState(
+    () =>
+      JSON.parse(localStorage.getItem('followIdList')) ??
+      getInitialFollowIdList()
+  );
+
+  const getUsers = reqPage => {
+    const data = {
+      reqPage,
+      setPage,
+      setUsers,
+      followingIdList,
+      followIdList,
+      selectedFilter,
+    };
+
+    if (selectedFilter === 'all') {
+      getAll(data);
+    } else {
+      getFiltered(data);
+    }
+  };
 
   useEffect(() => {
     localStorage.setItem('followingIdList', JSON.stringify(followingIdList));
-  }, [followingIdList]);
+    localStorage.setItem('followIdList', JSON.stringify(followIdList));
+  }, [followingIdList, followIdList]);
 
   useEffect(() => {
-    setPage(1);
     setUsers([]);
+    const reqPage = 1;
+    getUsers(reqPage);
   }, [selectedFilter]);
 
-  useEffect(() => {
-    if (page === currentPage) {
-      return;
-    }
-    if (selectedFilter === 'all') {
-      const data = { page, setCurrentPage, setUsers };
-      getAll(data);
-    }
-    if (selectedFilter === 'followings') {
-      const data = { page, setCurrentPage, setUsers, followingIdList };
-      getFollowing(data);
-    }
-  }, [page, selectedFilter, followingIdList]);
+  const onClickLoadMore = () => {
+    const reqPage = page + 1;
+    getUsers(reqPage);
+  };
 
   return (
     <div>
-      <div className="flex flex-wrap gap-7">
+      <div className="flex flex-wrap gap-12 pt-12 pb-[100px] justify-center">
         {users.map(user => (
           <Card
             user={user}
             setFollowingIdList={setFollowingIdList}
             followingIdList={followingIdList}
+            followIdList={followIdList}
+            setFollowIdList={setFollowIdList}
+            setUsers={setUsers}
+            selectedFilter={selectedFilter}
             key={user.id}
           />
         ))}
@@ -48,7 +67,7 @@ const CardList = ({ selectedFilter }) => {
       <button
         type="button"
         onClick={() => {
-          setPage(prev => prev + 1);
+          onClickLoadMore();
         }}
       >
         Load more

@@ -1,24 +1,18 @@
-import { useState } from 'react';
-import { getAllUsers, getFollowingUsers } from '../services/fetchAPI';
+import { getAllUsers, getFilteredUsers } from '../services/fetchAPI';
+import { frondEndPagination } from './frontEndPagination';
 
-export const getAll = async ({ page, setUsers, setCurrentPage }) => {
-  const fetchedUsers = await getAllUsers(page);
+export const getAll = async ({ reqPage, setUsers, setPage }) => {
+  const fetchedUsers = await getAllUsers(reqPage);
   setUsers(prev => [...prev, ...fetchedUsers]);
-  setCurrentPage(page);
+  setPage(reqPage);
 };
 
-export const getFollowing = async ({
-  page,
-  setUsers,
-  setCurrentPage,
-  followingIdList,
-}) => {
-  const pageSize = 3;
-  const startIndex = (page - 1) * pageSize;
-  const endIndex = startIndex + pageSize;
+export const getFiltered = async data => {
+  const { setUsers, reqPage, setPage } = data;
 
-  const paginatedList = followingIdList.slice(startIndex, endIndex);
-  const fetchedUsers = await getFollowingUsers(paginatedList);
+  const paginatedList = frondEndPagination(data);
+
+  const fetchedUsers = await getFilteredUsers(paginatedList);
   setUsers(prev => [...prev, ...fetchedUsers]);
-  setCurrentPage(page);
+  setPage(reqPage);
 };
