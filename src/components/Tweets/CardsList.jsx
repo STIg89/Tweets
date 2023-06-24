@@ -20,6 +20,9 @@ const CardList = ({ selectedFilter }) => {
   }, [selectedFilter]);
 
   useEffect(() => {
+    if (page === currentPage) {
+      return;
+    }
     if (selectedFilter === 'all') {
       const data = { page, setCurrentPage, setUsers };
       getAll(data);
@@ -28,7 +31,7 @@ const CardList = ({ selectedFilter }) => {
       const data = { page, setCurrentPage, setUsers, followingIdList };
       getFollowing(data);
     }
-  }, [page, selectedFilter]);
+  }, [page, selectedFilter, followingIdList]);
 
   return (
     <div>
