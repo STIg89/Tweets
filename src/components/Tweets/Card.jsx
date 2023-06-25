@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { patchUserFollowers } from '../../services/fetchAPI';
 import { CardBtn } from './CardBtn';
-import logo from '../../assets/images/logo.svg';
+import logo from '../../assets/images/Logo.png';
 
 const Card = ({
   user,
