@@ -1,12 +1,18 @@
 @font-face {
   font-family: 'Montserrat Medium';
   src: local('Montserrat Medium'),
-    url(./assets/fonts/Montserrat/Montserrat-Medium.ttf) format('truetype');
+    url(./assets/fonts/Montserrat/static/Montserrat-Medium.ttf)
+      format('truetype');
 }
 @font-face {
   font-family: 'Montserrat SemiBold';
   src: local('Montserrat SemiBold'),
-    url(./assets/fonts/Montserrat/Montserrat-SemiBold.ttf) format('truetype');
+    url(./assets/fonts/Montserrat/static/Montserrat-SemiBold.ttf)
+      format('truetype');
+}
+
+body {
+  background-color: aliceblue;
 }
 
 @tailwind base;

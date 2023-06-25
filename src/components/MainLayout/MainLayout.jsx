@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import Logo from './Logo';
-import Navigation from './Navigation';
+import BackBtn from './BackBtn';
 import Filter from './Filter';
 
 const MainLayout = ({ setSelectedFilter }) => {
   return (
     <div>
-      <header className="flex justify-between items-center">
+      <header className="h-[116px] flex justify-around items-center pt-8 pb-8 bg-slate-300 shadow-slate-600 shadow-2xl">
+        <BackBtn />
         <Logo />
-        <Navigation />
         <Filter setSelectedFilter={setSelectedFilter} />
       </header>
       <main>

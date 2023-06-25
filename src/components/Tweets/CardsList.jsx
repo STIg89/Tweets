@@ -49,7 +49,7 @@ const CardList = ({ selectedFilter }) => {
   };
 
   return (
-    <div>
+    <div className="max-w-screen-2xl mx-auto px-5">
       <div className="flex flex-wrap gap-12 pt-12 pb-[100px] justify-center">
         {users.map(user => (
           <Card

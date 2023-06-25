@@ -4,7 +4,7 @@ const Filter = ({ setSelectedFilter }) => {
   const location = useLocation();
 
   return location.pathname === '/tweets' ? (
-    <div className="">
+    <div className="w-[230px]">
       <label htmlFor="sort-select">Sort:</label>
       <select
         name="sort"
@@ -20,7 +20,7 @@ const Filter = ({ setSelectedFilter }) => {
       </select>
     </div>
   ) : (
-    <div className="w-56"></div>
+    <div className="w-[230px]"></div>
   );
 };
 

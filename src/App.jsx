@@ -18,6 +18,7 @@ function App() {
             path="tweets"
             element={<Tweets selectedFilter={selectedFilter} />}
           />
+          <Route path="*" element={<Home />} />
         </Route>
       </Routes>
     </>

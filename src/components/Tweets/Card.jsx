@@ -31,7 +31,7 @@ const Card = ({
   };
 
   return (
-    <div className="w-[380px] h-[460px] rounded-2xl flex flex-col items-center relative bg-blue-gradient p-5">
+    <div className="w-[380px] h-[460px] rounded-2xl flex flex-col items-center relative bg-blue-gradient p-5 shadow-lg shadow-slate-600">
       <img
         className="absolute left-5 top-5"
         src="src/assets/images/logo.svg"
