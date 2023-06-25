@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { patchUserFollowers } from '../../services/fetchAPI';
-import { CardBtn } from './CardBtn';
+import { Btn } from './Btn';
 import logo from '../../assets/images/Logo.png';
 
 const Card = ({
@@ -54,10 +54,10 @@ const Card = ({
             {followers.toLocaleString('en-US')} FOLLOWERS
           </p>
         </div>
-        <CardBtn
+        <Btn
           isFollowing={isFollowing}
           btnText={isFollowing ? 'FOLLOWING' : 'FOLLOW'}
-          toggleFollowing={toggleFollowing}
+          action={toggleFollowing}
         />
       </div>
     </div>

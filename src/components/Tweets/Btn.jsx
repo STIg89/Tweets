@@ -1,4 +1,4 @@
-export const CardBtn = ({ isFollowing, btnText, toggleFollowing }) => {
+export const Btn = ({ isFollowing, btnText, action }) => {
   return (
     <button
       className={`rounded-[10px] py-3.5 mx-auto w-[196px] shadow-btnShadow ${
@@ -7,7 +7,7 @@ export const CardBtn = ({ isFollowing, btnText, toggleFollowing }) => {
           : 'bg-white hover:bg-whiteHover'
       } font-medium font-semibold uppercase text-black text-lg leading-[22px] transition-colors`}
       type="button"
-      onClick={toggleFollowing}
+      onClick={action}
     >
       {btnText}
     </button>
