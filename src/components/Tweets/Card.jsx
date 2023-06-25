@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { patchUserFollowers } from '../../services/fetchAPI';
 import { CardBtn } from './CardBtn';
+import logo from '../../assets/images/logo.svg';
 
 const Card = ({
   user,
@@ -32,11 +33,7 @@ const Card = ({
 
   return (
     <div className="w-[380px] h-[460px] rounded-2xl flex flex-col items-center relative bg-blue-gradient p-5 shadow-lg shadow-slate-600">
-      <img
-        className="absolute left-5 top-5"
-        src="src/assets/images/logo.svg"
-        alt="Logo"
-      />
+      <img className="absolute left-5 top-5" src={logo} alt="Logo" />
       <div className="flex flex-col gap-[26px] pt-[158px] pb-4 px-4 w-full h-full bg-picture bg-no-repeat bg-top-2 bg-custom">
         <div className="relative z-10 mx-auto before:content-[''] before:absolute before:-z-10 before:top-1/2 before:left-[-150px] before:transform before:-translate-y-1/2 before:w-[380px] before:h-2 before:shadow-lineShadow before:bg-white">
           <div className="w-20 h-20 rounded-full border-8 border-white bg-[#5735A4]">
