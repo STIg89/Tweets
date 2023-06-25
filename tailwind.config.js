@@ -15,8 +15,8 @@ export default {
       backgroundImage: {
         'blue-gradient':
           'linear-gradient(114.99deg, #471CA9 -0.99%, #5736A3 54.28%, #4B2A99 78.99%)',
-        'arrow-down': "url('./src/assets/images/arrow-down.svg')",
-        picture: "url('./src/assets/images/picture.webp')",
+        'arrow-down': "url('./assets/images/arrow-down.svg')",
+        picture: "url('./assets/images/picture.webp')",
       },
       backgroundPosition: {
         'top-2': 'center top 0.5rem',
