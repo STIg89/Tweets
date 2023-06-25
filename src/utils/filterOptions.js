@@ -10,9 +10,9 @@ export const getAll = async ({ reqPage, setUsers, setPage }) => {
 export const getFiltered = async data => {
   const { setUsers, reqPage, setPage } = data;
 
-  const paginatedList = frondEndPagination(data);
+  const paginatedList = await frondEndPagination(data);
 
   const fetchedUsers = await getFilteredUsers(paginatedList);
-  setUsers(prev => [...prev, ...fetchedUsers]);
-  setPage(reqPage);
+  await setUsers(prev => [...prev, ...fetchedUsers]);
+  await setPage(reqPage);
 };

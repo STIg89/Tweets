@@ -10,6 +10,7 @@ const CardList = ({ selectedFilter }) => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [noMoreUsers, setNoMoreUsers] = useState(false);
   const [followingIdList, setFollowingIdList] = useState(
     () => JSON.parse(localStorage.getItem('followingIdList')) ?? []
   );
@@ -50,6 +51,20 @@ const CardList = ({ selectedFilter }) => {
     getUsers(reqPage);
   }, [selectedFilter]);
 
+  useEffect(() => {
+    if (
+      (selectedFilter === 'all' &&
+        users.length === followIdList.length + followingIdList.length) ||
+      (selectedFilter === 'followings' &&
+        users.length === followingIdList.length) ||
+      (selectedFilter === 'follow' && users.length === followIdList.length)
+    ) {
+      setNoMoreUsers(true);
+    } else {
+      setNoMoreUsers(false);
+    }
+  }, [users]);
+
   const onClickLoadMore = () => {
     setIsLoadingMore(true);
     const reqPage = page + 1;
@@ -77,6 +92,8 @@ const CardList = ({ selectedFilter }) => {
       <div className="py-8 text-center">
         {isLoadingMore ? (
           <Loader />
+        ) : noMoreUsers ? (
+          <></>
         ) : (
           <Btn btnText={'Load more...'} action={onClickLoadMore} />
         )}
