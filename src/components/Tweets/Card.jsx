@@ -35,7 +35,7 @@ const Card = ({
     <div className="w-[380px] h-[460px] rounded-2xl flex flex-col items-center relative bg-blue-gradient p-5 shadow-lg shadow-slate-600">
       <img
         className="absolute left-5 top-5"
-        src="../../assets/images/logo.svg"
+        src="../../../src/assets/images/logo.svg"
         alt="Logo"
       />
       <div className="flex flex-col gap-[26px] pt-[158px] pb-4 px-4 w-full h-full bg-picture bg-no-repeat bg-top-2 bg-custom">
