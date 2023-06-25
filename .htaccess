@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /tweet_card/
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /tweet_card/index.html [L]
