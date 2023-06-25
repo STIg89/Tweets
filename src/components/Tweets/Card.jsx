@@ -7,8 +7,6 @@ const Card = ({
   user,
   setFollowingIdList,
   followingIdList,
-  // selectedFilter,
-  // followIdList,
   setFollowIdList,
 }) => {
   const [followers, setFollowers] = useState(user.followers);
