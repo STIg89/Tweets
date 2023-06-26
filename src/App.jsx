@@ -10,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route
-          path=""
+          path="/"
           element={<MainLayout setSelectedFilter={setSelectedFilter} />}
         >
           <Route index element={<Home />} />
