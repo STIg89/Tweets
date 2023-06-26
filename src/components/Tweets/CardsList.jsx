@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getInitialFollowIdList } from '../../utils/initialUsersIds';
+import { getInitialFollowIdList } from '../../utils/getInitialFollowIdList';
 import Card from './Card';
 import { getAll, getFiltered } from '../../utils/filterOptions';
 import { Loader } from '../../utils/loader';
@@ -15,9 +15,7 @@ const CardList = ({ selectedFilter }) => {
     () => JSON.parse(localStorage.getItem('followingIdList')) ?? []
   );
   const [followIdList, setFollowIdList] = useState(
-    () =>
-      JSON.parse(localStorage.getItem('followIdList')) ??
-      getInitialFollowIdList()
+    () => JSON.parse(localStorage.getItem('followIdList')) ?? []
   );
 
   const getUsers = async reqPage => {
@@ -38,6 +36,12 @@ const CardList = ({ selectedFilter }) => {
     setIsLoading(false);
     setIsLoadingMore(false);
   };
+
+  useEffect(() => {
+    if (followIdList.length === 0) {
+      getInitialFollowIdList(setFollowIdList);
+    }
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('followingIdList', JSON.stringify(followingIdList));
